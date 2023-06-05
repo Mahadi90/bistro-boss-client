@@ -5,12 +5,12 @@ import './Featured.css'
 
 const Featured = () => {
     return (
-        <div className='my-6 featured-div text-white'>
+        <div className='my-6 featured-div  bg-fixed '>
             <SectionTitle
             subHeading={'Check it out'}
             Heading='FROM OUR MENU'
             ></SectionTitle>
-            <div className='md:flex items-center pb-20 pt-12 px-32'>
+            <div className='md:flex items-center pb-20 pt-12 px-32 bg-gray-950 bg-opacity-30 text-white'>
                 <div><img className='' src={featuredImg} alt="" /></div>
                 <div className='md:ml-8 space-y-2'>
                     <p>March 20, 2023</p>
