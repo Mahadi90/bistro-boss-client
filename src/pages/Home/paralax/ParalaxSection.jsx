@@ -5,7 +5,7 @@ import img from '../../../assets/home/featured.jpg'
 
 const ParalaxSection = () => {
   return (
-    <div className="my-10 parallax-p text-white pt-4 bg-fixed">
+    <div className="my-10 parallax-p text-white w-full pt-4 bg-fixed">
       <SectionTitle
         subHeading={"check it out"}
         heading={"FROM OUR MENU"}

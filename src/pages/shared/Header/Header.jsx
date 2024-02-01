@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 
   const navItems = <>
-  <li><a href="#">Item1</a></li>
-  <li><a href="#">Item2</a></li>
-  <li><a href="#">Item3</a></li>
+  <Link className='mx-2 font-bold' to='/'>Home</Link>
+  <Link className='mx-2 font-bold' to='/menu'>Our menu</Link>
+  <Link className='mx-2 font-bold' to='/dashb'>Dashboard</Link>
   </>
 
     return (
