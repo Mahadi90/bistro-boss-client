@@ -5,8 +5,8 @@ const Header = () => {
 
   const navItems = <>
   <Link className='mx-2 font-bold' to='/'>Home</Link>
-  <Link className='mx-2 font-bold' to='/menu'>Our menu</Link>
-  <Link className='mx-2 font-bold' to='/dashb'>Dashboard</Link>
+  <Link className='mx-2 font-bold' to='/menu'>Our Menu</Link>
+  <Link className='mx-2 font-bold' to='/shop'>Shop</Link>
   </>
 
     return (

@@ -3,7 +3,7 @@ import React from "react";
 const Cover = ({bgImg, title, description}) => {
   return (
     <div
-      className="hero h-[550px]"
+      className="hero h-[500px]"
       style={{
         backgroundImage:
           `url("${bgImg}")`,
