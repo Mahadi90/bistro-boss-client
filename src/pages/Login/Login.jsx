@@ -91,6 +91,10 @@ const Login = () => {
               }}
              />
           </form>
+          <div className="border-x-2 text-center">
+            <h2 className="mb-2">OR Logi with</h2>
+            <button className="btn bg-red-500 rounded-full text-white hover:bg-white hover:border-red-500 hover:border-2 hover:text-red-500">Login with your Google Account</button>
+          </div>
         </div>
       </div>
     </div>
