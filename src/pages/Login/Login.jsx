@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import img from '../../assets/others/authentication1.png'
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import toast, { Toaster } from 'react-hot-toast';
+import { Link } from "react-router-dom";
 
 const Login = () => {
     const [disabled, setDisabled] = useState(true)
@@ -90,6 +91,7 @@ const Login = () => {
                 },
               }}
              />
+             <p>Are you new here? please <Link className="link" to='/signup'>Sign Up</Link></p>
           </form>
           <div className="border-x-2 text-center">
             <h2 className="mb-2">OR Logi with</h2>

@@ -8,12 +8,13 @@ const Main = () => {
  
     const location = useLocation()
     const isNavFooter = location.pathname.includes('login')
+    const isNavbarFooter = location.pathname.includes('signup')
 
     return (
         <div>
-            {isNavFooter || <Header></Header>}
+            {isNavFooter || isNavbarFooter || <Header></Header>}
             <Outlet></Outlet>
-            {isNavFooter || <Footer></Footer>}
+            {isNavFooter || isNavbarFooter || <Footer></Footer>}
         </div>
     );
 };
