@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import img from "../../assets/others/authentication1.png";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import toast, { Toaster } from 'react-hot-toast';
 
 const SignUp = () => {
+
+   const { createuser } = useContext(AuthContext)
+
   const handleSignUp = (e) => {
     e.preventDefault();
 
@@ -10,11 +15,22 @@ const SignUp = () => {
     const name = form.name.value;
     const password = form.password.value;
     const email = form.email.value;
-    console.log(name, email, password);
+    
+    createuser(email, password)
+    .then(result => {
+        const createdUser = result.user;
+        console.log(createdUser)
+        toast.success('User created successfully');
+    })
+    .catch(error => {
+        console.log(error.message)
+        toast.error(error.message);
+    })
   };
 
   return (
-    <div className="hero mt-20 border-t-4 border-l-4  shadow-lg shadow-gray-700 ">
+    <div className="hero mt-10 border-t-4 border-l-4  shadow-lg shadow-gray-700 ">
+         <Toaster  />
       <div className="hero-content flex-col lg:flex-row">
         <div className="text-center  w-full lg:text-left">
           <img src={img} alt="" />
@@ -64,7 +80,7 @@ const SignUp = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Login</button>
+              <button className="btn btn-primary">SignUp</button>
             </div>
             <p>
               Already have an account? please{" "}

@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import img from '../../assets/others/authentication1.png'
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import toast, { Toaster } from 'react-hot-toast';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
     const [disabled, setDisabled] = useState(true)
+    const navigate = useNavigate()
+
+    const { login } = useContext(AuthContext)
 
     useEffect(() => {
         loadCaptchaEnginge(6); 
@@ -22,16 +26,28 @@ const Login = () => {
 
     const handleLogin = (e) => {
  
-    e.preventDefault()
+        e.preventDefault()
 
         const form = e.target;
         const password = form.password.value;
         const email = form.email.value;
-        console.log(email, password)
+      
+        login(email, password)
+        .then(result => {
+            const createdUser = result.user;
+            console.log(createdUser)
+            toast.success('User login sucessfully');
+            navigate('/')
+        })
+        .catch(error => {
+            console.log(error.message)
+            toast.error(error.message);
+        })
+        
     }
 
   return (
-    <div className="hero mt-20 border-t-4 border-l-4  shadow-lg shadow-gray-700 ">
+    <div className="hero mt-10 border-t-4 border-l-4  shadow-lg shadow-gray-700 ">
       <div className="hero-content flex-col lg:flex-row">
         <div className="text-center  w-full lg:text-left">
           <img src={img} alt="" />

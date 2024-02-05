@@ -4,11 +4,14 @@ import App from "./App.jsx";
 import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/router.jsx";
+import AuthProvider from "./provider/AuthProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <div className="max-w-7xl mx-auto">
+   <AuthProvider>
+   <div className="max-w-7xl mx-auto">
       <RouterProvider router={router}></RouterProvider>
     </div>
+   </AuthProvider>
   </React.StrictMode>
 );
