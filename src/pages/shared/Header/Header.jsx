@@ -6,7 +6,7 @@ const Header = () => {
   const navItems = <>
   <Link className='mx-2 font-bold' to='/'>Home</Link>
   <Link className='mx-2 font-bold' to='/menu'>Our Menu</Link>
-  <Link className='mx-2 font-bold' to='/shop'>Shop</Link>
+  <Link className='mx-2 font-bold' to='/shop/salad'>Shop</Link>
   </>
 
     return (
@@ -29,7 +29,7 @@ const Header = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Button</a>
+   <Link to='/login' className='btn'>Login</Link>
   </div>
 </div>
     );

@@ -21,6 +21,8 @@ const Shop = () => {
   const pizza = menu.filter((item) => item.category === "pizza");
   const soup = menu.filter((item) => item.category === "soup");
   const offered = menu.filter((item) => item.category === "offered");
+  
+  
 
   return (
     <div>
@@ -34,9 +36,9 @@ const Shop = () => {
         description={"Would you like to try a dish"}
       ></Cover>
 
-      <Tabs className={'my-10'} selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
+      <Tabs className={'my-10 mx-auto text-center'} selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
 
-        <TabList>
+        <TabList className='text-xl font-bold text-gray-600 my-4'>
           <Tab>SALAD</Tab>
           <Tab>PIZZA</Tab>
           <Tab>SOUP</Tab>
