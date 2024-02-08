@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import img from '../../assets/others/authentication1.png'
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import toast, { Toaster } from 'react-hot-toast';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
@@ -10,6 +10,10 @@ const Login = () => {
     const navigate = useNavigate()
 
     const { login, googleSignIn, } = useContext(AuthContext)
+    const location = useLocation()
+
+    const from = location.state?.from?.pathname || '/'
+    // console.log(location)
 
     useEffect(() => {
         loadCaptchaEnginge(6); 
@@ -37,7 +41,7 @@ const Login = () => {
             const createdUser = result.user;
             console.log(createdUser)
             toast.success('User login sucessfully');
-            navigate('/')
+            navigate(from, {replace : true})
         })
         .catch(error => {
             console.log(error.message)
@@ -53,6 +57,7 @@ const Login = () => {
         console.log(createdUser)
         toast.success('User login sucessfully');
         navigate('/')
+        navigate(from, {replace : true})
     })
     .catch(error => {
         console.log(error.message)

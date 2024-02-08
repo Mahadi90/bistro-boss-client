@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../provider/AuthProvider';
+import { FaShoppingCart } from 'react-icons/fa';
 
 const Header = () => {
 
@@ -20,6 +21,11 @@ const Header = () => {
   <Link className='mx-2 font-bold' to='/'>Home</Link>
   <Link className='mx-2 font-bold' to='/menu'>Our Menu</Link>
   <Link className='mx-2 font-bold' to='/shop/salad'>Shop</Link>
+  <button className='mx-2 font-bold'>
+  <FaShoppingCart className='w-6 h-6'></FaShoppingCart>
+  <div className="badge badge-secondary">+0</div>
+</button>
+<Link className='mx-2 font-bold' to='/secret'>Dashboard</Link>
   </>
 
     return (
@@ -45,7 +51,7 @@ const Header = () => {
    {
     user ?   <>
     <h2>{user.displayName}</h2>
-    <div><img className='w-12 h-12 rounded-full mx-4' src={user.photoURL} alt="photo" /></div>
+    <img className='w-12 h-12 rounded-full mx-4' src={user.photoURL} alt="photo" />
     <button onClick={handleLogout} className='btn'>Logout</button>
     </>
     : <Link to='/login' className='btn'>Login</Link>
