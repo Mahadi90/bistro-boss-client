@@ -1,18 +1,20 @@
 import React, { useContext } from "react";
 import img from "../../assets/others/authentication1.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast, { Toaster } from 'react-hot-toast';
 
 const SignUp = () => {
 
-   const { createuser } = useContext(AuthContext)
+        const { createuser, googleSignIn,  createProfile} = useContext(AuthContext)
+   const navigate = useNavigate()
 
   const handleSignUp = (e) => {
     e.preventDefault();
 
     const form = e.target;
     const name = form.name.value;
+    const photoUrl = form.photo.value;
     const password = form.password.value;
     const email = form.email.value;
     
@@ -21,12 +23,30 @@ const SignUp = () => {
         const createdUser = result.user;
         console.log(createdUser)
         toast.success('User created successfully');
+        createProfile(name, photoUrl)
+        .then()
+        .catch()
+
     })
     .catch(error => {
         console.log(error.message)
         toast.error(error.message);
     })
   };
+
+  const handleGoogleLogin = () => {
+    googleSignIn()
+    .then(result => {
+      const createdUser = result.user;
+      console.log(createdUser)
+      toast.success('User Created sucessfully');
+      navigate('/')
+  })
+  .catch(error => {
+      console.log(error.message)
+      toast.error(error.message);
+  })
+  }
 
   return (
     <div className="hero mt-10 border-t-4 border-l-4  shadow-lg shadow-gray-700 ">
@@ -50,6 +70,18 @@ const SignUp = () => {
                 required
               />
             </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Photo URL</span>
+              </label>
+              <input
+                name="photo"
+                type="text"
+                placeholder="photo URL"
+                className="input input-bordered"
+                required
+              />
+              </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -91,7 +123,7 @@ const SignUp = () => {
           </form>
           <div className="border-x-2 text-center">
             <h2 className="mb-2">OR Sign up with</h2>
-            <button className="btn bg-red-500 rounded-full text-white hover:bg-white hover:border-red-500 hover:border-2 hover:text-red-500">
+            <button onClick={handleGoogleLogin} className="btn bg-red-500 rounded-full text-white hover:bg-white hover:border-red-500 hover:border-2 hover:text-red-500">
               Sign Up with your Google Account
             </button>
           </div>

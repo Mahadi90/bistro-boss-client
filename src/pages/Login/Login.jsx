@@ -9,7 +9,7 @@ const Login = () => {
     const [disabled, setDisabled] = useState(true)
     const navigate = useNavigate()
 
-    const { login } = useContext(AuthContext)
+    const { login, googleSignIn, } = useContext(AuthContext)
 
     useEffect(() => {
         loadCaptchaEnginge(6); 
@@ -44,6 +44,24 @@ const Login = () => {
             toast.error(error.message);
         })
         
+    }
+
+    const handleGoogleLogin = () => {
+      googleSignIn()
+      .then(result => {
+        const createdUser = result.user;
+        console.log(createdUser)
+        toast.success('User login sucessfully');
+        navigate('/')
+    })
+    .catch(error => {
+        console.log(error.message)
+        toast.error(error.message);
+    })
+    }
+    
+    const updatePass = () => {
+
     }
 
   return (
@@ -111,7 +129,7 @@ const Login = () => {
           </form>
           <div className="border-x-2 text-center">
             <h2 className="mb-2">OR Logi with</h2>
-            <button className="btn bg-red-500 rounded-full text-white hover:bg-white hover:border-red-500 hover:border-2 hover:text-red-500">Login with your Google Account</button>
+            <button onClick={handleGoogleLogin} className="btn bg-red-500 rounded-full text-white hover:bg-white hover:border-red-500 hover:border-2 hover:text-red-500">Login with your Google Account</button>
           </div>
         </div>
       </div>
