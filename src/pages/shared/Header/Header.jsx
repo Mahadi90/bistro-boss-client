@@ -31,9 +31,9 @@ const Header = () => {
         Shop
       </Link>
       <Link to='/dashboard/cart'>
-        <button className="mx-2 font-bold">
+        <button className="mx-2 font-bold relative">
           <FaShoppingCart className="w-6 h-6"></FaShoppingCart>
-          <div className="badge badge-secondary">+{cart.length}</div>
+          <div className="badge badge-secondary absolute -top-2 left-6">+{cart.length}</div>
         </button>
       </Link>
     </>
