@@ -6,7 +6,7 @@ let pages = [];
 for(let i = 1; i <= Math.ceil(totalItems / itemsperPage); i++){
     pages.push(i)
 }
-console.log(pages)
+// console.log(pages)
   
 
     return (

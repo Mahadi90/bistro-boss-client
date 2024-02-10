@@ -5,8 +5,9 @@ import Menu from "../pages/menu/Menu/Menu";
 import Shop from "../pages/Shop/Shop/Shop";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
-import Secrets from "../secret/Secrets";
-import PrivateRoutes from "./PrivateRoutes";
+import DashBoard from "../layout/DashBoard";
+import Cart from "../pages/dashboard/Cart/Cart";
+
 
 
 
@@ -37,12 +38,17 @@ const router = createBrowserRouter([
             {
                 path: 'signup',
                 element : <SignUp></SignUp>
-            },
-            {
-                path: 'secret',
-                element : <PrivateRoutes><Secrets></Secrets></PrivateRoutes>
             }
-           
+        ]
+    },
+    {
+        path : 'dashboard',
+        element : <DashBoard></DashBoard>,
+        children : [
+            {
+                path : 'cart',
+                element : <Cart></Cart>
+            }
         ]
     }
 ])
