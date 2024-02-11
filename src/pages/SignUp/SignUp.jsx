@@ -32,7 +32,9 @@ const SignUp = () => {
               name,
               email,
             };
-            axiosPublic.post("/users", userInfo).then((res) => {
+            axiosPublic.post('/users', userInfo)
+            .then((res) => {
+              console.log(res.data)
               if (res.data.insertedId) {
                 toast.success("User created successfully");
                 navigate("/");

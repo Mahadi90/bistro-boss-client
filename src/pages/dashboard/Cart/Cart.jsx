@@ -4,7 +4,7 @@ import useCart from "../../hooks/useCart";
 import CartTable from "./CartTable";
 
 const Cart = () => {
-  const [cart, prefetch] = useCart();
+  const [cart, refetch] = useCart();
   const totalCartPrice = cart.reduce((total, item) => total + item.price, 0);
 
   return (
@@ -36,7 +36,7 @@ const Cart = () => {
           </thead>
           <tbody>
             {cart.map((item, index) => (
-              <CartTable key={item._id} item={item} index={index} prefetch={prefetch}></CartTable>
+              <CartTable key={item._id} item={item} index={index} refetch={refetch}></CartTable>
             ))}
           </tbody>
         </table>

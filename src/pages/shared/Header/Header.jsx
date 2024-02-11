@@ -30,6 +30,9 @@ const Header = () => {
       <Link className="mx-2 font-bold" to="/shop/salad">
         Shop
       </Link>
+      <Link className="mx-2 font-bold" to="/dashboard">
+        Dashboard
+      </Link>
       <Link to='/dashboard/cart'>
         <button className="mx-2 font-bold relative">
           <FaShoppingCart className="w-6 h-6"></FaShoppingCart>

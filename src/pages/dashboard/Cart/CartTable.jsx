@@ -3,7 +3,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 
-const CartTable = ({item, index, prefetch}) => {
+const CartTable = ({item, index, refetch}) => {
 
     const axiosSecure = useAxiosSecure()
 
@@ -28,7 +28,7 @@ const CartTable = ({item, index, prefetch}) => {
                         text: "Your file has been deleted.",
                         icon: "success"
                       });
-                      prefetch()
+                      refetch()
                  }
                 })
             }
@@ -47,7 +47,9 @@ const CartTable = ({item, index, prefetch}) => {
         </td>
         <td>${price}</td>
         <th>
+          <div>
           <button onClick={() => handleDelete(_id)} className="btn btn-ghost btn-xs"><FaTrashAlt className='h-6 w-6 text-red-600'></FaTrashAlt></button>
+          </div>
         </th>
       </tr>
     );
