@@ -15,8 +15,8 @@ const Cart = () => {
       ></SectionTitle>
 
       <div className="flex justify-evenly items-center">
-        <h2 className="text-2xl font-bold">Total Orders : {cart.length}</h2>
-        <h2 className="text-2xl font-bold">Total Price : ${totalCartPrice}</h2>
+        <h2 className="text-2xl font-bold">Total Orders : <span className="text-orange-400">{cart.length}</span></h2>
+        <h2 className="text-2xl font-bold">Total Price : <span className="text-orange-400">${totalCartPrice}</span></h2>
         <button className="btn btn-primary">PAY</button>
       </div>
 
@@ -28,8 +28,8 @@ const Cart = () => {
               <th>
                 <h2>Serial</h2>
               </th>
+              <th>Item imge</th>
               <th>Item Name</th>
-              <th>Job</th>
               <th>Price</th>
               <th>Action</th>
             </tr>

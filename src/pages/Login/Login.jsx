@@ -4,6 +4,7 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import toast, { Toaster } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const Login = () => {
     const [disabled, setDisabled] = useState(true)
@@ -11,6 +12,7 @@ const Login = () => {
 
     const { login, googleSignIn, } = useContext(AuthContext)
     const location = useLocation()
+    const axiosPublic = useAxiosPublic()
 
     const from = location.state?.from?.pathname || '/'
     // console.log(location)
@@ -50,24 +52,31 @@ const Login = () => {
         
     }
 
-    const handleGoogleLogin = () => {
-      googleSignIn()
-      .then(result => {
-        const createdUser = result.user;
-        console.log(createdUser)
-        toast.success('User login sucessfully');
-        navigate('/')
-        navigate(from, {replace : true})
-    })
-    .catch(error => {
-        console.log(error.message)
-        toast.error(error.message);
-    })
-    }
     
-    const updatePass = () => {
-
-    }
+  const handleGoogleLogin = () => {
+    googleSignIn()
+      .then((result) => {
+        const createdUser = result.user;
+        console.log(createdUser);
+        const userInfo = {
+          name : createdUser?.displayName,
+          email : createdUser?.email
+        }
+        axiosPublic.post('/users', userInfo)
+        .then(res => {
+          console.log(res.data)
+          if(res.data.insertedId){
+            toast.success("User Created sucessfully");
+            navigate("/");
+          }
+        })
+        
+      })
+      .catch((error) => {
+        console.log(error.message);
+        toast.error(error.message);
+      });
+  };
 
   return (
     <div className="hero mt-10 border-t-4 border-l-4  shadow-lg shadow-gray-700 ">
