@@ -33,6 +33,24 @@ const UsersTable = ({index,user, refetch}) => {
       });
   }
 
+  const handleMakeAdmin = (id) => {
+
+    axiosSecure.patch(`/users/admin/${id}`)
+    .then(res => {
+      if(res.data.modifiedCount > 0){
+        refetch()
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `${user.name} has made admin successfully`,
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    })
+    
+  }
+
     return (
         <tr>
         <th>
@@ -43,7 +61,10 @@ const UsersTable = ({index,user, refetch}) => {
         </td>
         <td>{user.email}</td>
         <td>
-        <button  className="btn btn-xs bg-orange-400 text-white h-10 hover:text-orange-400"><FaUsers className='h-6 w-6'></FaUsers></button>   
+        {
+          user.role === 'admin' ? "ADMIN" : 
+          <button onClick={()=> handleMakeAdmin(user._id)} className="btn btn-xs bg-orange-400 text-white h-10 hover:text-orange-400"><FaUsers className='h-6 w-6'></FaUsers></button>  
+        } 
         </td>
         <th>
           <div>
